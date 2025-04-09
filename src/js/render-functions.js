@@ -5,6 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryList = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
+const btnMore = document.querySelector('.btn-more');
 
 export function createGallery(images) {
   const htmlImage = images
@@ -46,4 +47,12 @@ export function showLoader() {
 
 export function hideLoader() {
   loader.classList.add('hidden');
+}
+
+export function showLoadMoreButton() {
+  btnMore.classList.remove('hidden');
+}
+
+export function hideLoadMoreButton() {
+  btnMore.classList.add('hidden');
 }
