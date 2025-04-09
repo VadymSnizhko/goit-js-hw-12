@@ -28,7 +28,8 @@ export function createGallery(images) {
     )
     .join('');
 
-  galleryList.innerHTML = htmlImage;
+  //galleryList.innerHTML = htmlImage;
+  galleryList.insertAdjacentHTML('beforeend', htmlImage);
 
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',

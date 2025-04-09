@@ -20,14 +20,14 @@ import { showLoadMoreButton } from './js/render-functions';
 import { hideLoadMoreButton } from './js/render-functions';
 
 const form = document.querySelector('.form');
-const btnSearch = document.querySelector('.btn-more');
+const btnMore = document.querySelector('.btn-more');
 const inputForm = document.querySelector('input');
 
 const API_KEY = '49637256-cb46921c72200043e40baf2ce';
 let showPage = 1;
 
 form.addEventListener('submit', clickSearch);
-btnSearch.addEventListener('click', showMoreResult);
+btnMore.addEventListener('click', showMoreResult);
 
 function clickSearch(event) {
   event.preventDefault();
@@ -87,7 +87,27 @@ async function fetchData(query) {
   }
 }
 
-function showMoreResult() {
+async function showMoreResult() {
   showPage++;
+  btnMore.disable = true;
+  btnMore.innerHTML = 'Loading...';
+
+  //console.log(query);
+
+  try {
+    //fetchData();
+    //const data = await getImagesByQuery(query, showPage);
+    //console.log(data);
+    //createGallery(data.hits);
+    btnMore.disable = false;
+    btnMore.innerHTML = 'Load more';
+  } catch (error) {
+    iziToast.show({
+      color: 'red',
+      position: 'topRight',
+      message: `Помилка: '${error.message}'`,
+    });
+  }
+
   console.log(showPage);
 }
