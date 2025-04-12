@@ -81,9 +81,10 @@ async function fetchData(query) {
       showLoadMoreButton();
       showPage++;
       if (showPage > 2) {
-        const card = document.querySelector('.gallery-image');
+        const card = document.querySelector('.gallery-cart');
         if (card) {
           const cardHeight = card.getBoundingClientRect().height;
+
           window.scrollBy({
             left: 0,
             top: cardHeight * 2,
