@@ -42,6 +42,11 @@
   justify-content: center;
 }
 
+.btn-more {
+  border: 0px;
+}
+
 .btn-more.hidden {
   display: none;
+  border: 0px;
 }

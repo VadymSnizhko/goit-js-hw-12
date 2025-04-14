@@ -33,14 +33,8 @@ let valueInput = '';
 form.addEventListener('submit', clickSearch);
 btnMore.addEventListener('click', showMoreResult);
 
-function makeQuery(valueInput) {}
-
-function clickSearch(event) {
-  event.preventDefault();
-  hideLoadMoreButton();
-  showPage = 1;
-  valueInput = inputForm.value.trim();
-
+function makeQuery(valueInput) {
+  //let query;
   const searchParam = new URLSearchParams({
     key: API_KEY,
     q: valueInput,
@@ -51,13 +45,23 @@ function clickSearch(event) {
   });
 
   const query = `https://pixabay.com/api/?${searchParam}`;
+
+  return query;
+}
+
+function clickSearch(event) {
+  event.preventDefault();
+  hideLoadMoreButton();
+  showPage = 1;
+  valueInput = inputForm.value.trim();
+
+  const query = makeQuery(valueInput); //`https://pixabay.com/api/?${searchParam}`;
   if (!valueInput) {
     return;
   }
   showLoader();
 
   clearGallery();
-  //console.log(valueInput);
 
   inputForm.value = '';
 
@@ -126,24 +130,9 @@ async function showMoreResult() {
   //console.log(query);
 
   try {
-    //fetchData();
-    //const data = await getImagesByQuery(query, showPage);
-    //console.log(data);
-    //createGallery(data.hits);
-    /** */
-    const searchParam = new URLSearchParams({
-      key: API_KEY,
-      q: valueInput,
-      image_type: 'photo',
-      orientation: 'horizontal',
-      safesearch: true,
-      per_page: 15,
-    });
-
-    const query = `https://pixabay.com/api/?${searchParam}`;
+    const query = makeQuery(valueInput); // `https://pixabay.com/api/?${searchParam}`;
 
     fetchData(query);
-    /** */
 
     btnMore.disable = false;
     btnMore.innerHTML = 'Load more';
